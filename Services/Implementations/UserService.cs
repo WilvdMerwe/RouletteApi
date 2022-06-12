@@ -148,13 +148,14 @@ namespace RouletteApi.Services.Implementations
                     return response;
                 }
 
-                var user = await _dbContext.Users.FindAsync(id);
-
-                if (user is null)
+                var userResponse = await GetById(1);
+                if (!userResponse.Success)
                 {
-                    response.Message = "User not found";
+                    response.Message = userResponse.Message;
                     return response;
                 }
+
+                var user = userResponse.Result;
 
                 user.Name = request.Name;
                 user.Surname = request.Surname;
