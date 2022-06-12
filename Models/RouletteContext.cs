@@ -3,9 +3,9 @@ using RouletteApi.Models.Entities;
 
 namespace RouletteApi.Models;
 
-public class RouletteDbContext : DbContext
+public class RouletteContext : DbContext
 {
-    public RouletteDbContext(DbContextOptions options) : base(options) { }
+    public RouletteContext(DbContextOptions options) : base(options) { }
 
     public DbSet<User> Users { get; set; }
 }

@@ -8,7 +8,7 @@ using RouletteApi.Models;
 
 namespace RouletteApi.Migrations
 {
-    [DbContext(typeof(RouletteDbContext))]
+    [DbContext(typeof(RouletteContext))]
     partial class RouletteDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -9,7 +9,7 @@ using RouletteApi.Models;
 
 namespace RouletteApi.Migrations
 {
-    [DbContext(typeof(RouletteDbContext))]
+    [DbContext(typeof(RouletteContext))]
     [Migration("20220612180735_InitialCreate")]
     partial class InitialCreate
     {

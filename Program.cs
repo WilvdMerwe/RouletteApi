@@ -10,8 +10,8 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 #region EntityFramework
 
 var connectionString = builder.Configuration.GetConnectionString("RouletteDb");
-builder.Services.AddSqlite<RouletteDbContext>(connectionString);
-//builder.Services.AddDbContext<RouletteDbContext>(options => options.UseInMemoryDatabase("items"));
+//builder.Services.AddSqlite<RouletteDbContext>(connectionString);
+builder.Services.AddDbContext<RouletteContext>(options => options.UseInMemoryDatabase("items"));
 
 #endregion EntityFramework
 

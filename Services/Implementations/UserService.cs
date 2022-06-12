@@ -10,9 +10,9 @@ namespace RouletteApi.Services.Implementations
     public class UserService : IUserService
     {
         private readonly ILogger<UserService> _logger;
-        private readonly RouletteDbContext _dbContext;
+        private readonly RouletteContext _dbContext;
 
-        public UserService(ILogger<UserService> logger, RouletteDbContext dbContext)
+        public UserService(ILogger<UserService> logger, RouletteContext dbContext)
         {
             _logger = logger;
             _dbContext = dbContext;
