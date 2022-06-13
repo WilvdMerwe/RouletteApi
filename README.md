@@ -3,61 +3,61 @@
 ## Specification
 
 ### Functions
-⦁	PlaceBet
-⦁	Spin
-⦁	Payout
-⦁	ShowPreviousSpins
+- PlaceBet
+- Spin
+- Payout
+- ShowPreviousSpins
 
 ### Rules
 
 Below rules describes the multiplier that should be applied to the bet amount to calculate the resulting payout of that bet.
-The user can however make a collection of bets before the the spin result establishes the payout.
+The user can however make a collection of bets before the the spin result establishes the full aggregated payout.
 
 #### Outside
 ##### 1 to 1
-⦁	AnyBlack
-⦁	AnyRed 
-⦁	Even
-⦁	Odd
-⦁	OneToEighteen
-⦁	NineteenToThirtySix
+- AnyBlack
+- AnyRed 
+- Even
+- Odd
+- OneToEighteen
+- NineteenToThirtySix
 
 ##### 2 to 1
-⦁	FirstTwelve
-⦁	SecondTwelve
-⦁	ThirdTwelve
-⦁	ColumnOne
-⦁	ColumnTwo
-⦁	ColumnThree
+- FirstTwelve
+- SecondTwelve
+- ThirdTwelve
+- ColumnOne
+- ColumnTwo
+- ColumnThree
 
 #### Inside
 ##### 5 to 1
-⦁	DoubleStreet (2 Rows of 3 numbers each)
+- DoubleStreet (2 Rows of 3 numbers each)
 
 ##### 6 to 1
-⦁	TopLine (00,0,1,2,3)
+- TopLine (00,0,1,2,3)
 
 ##### 8 to 1
-⦁	Corner (Between 4 numbers)
+- Corner (Between 4 numbers)
 
 ##### 11 to 1
-⦁	Street (Rows of 3 numbers)
-⦁	Trio (Between 3 numbers at the zeros)
+- Street (Rows of 3 numbers)
+- Trio (Between 3 numbers at the zeros)
 
 ##### 17 to 1
-⦁	Split (Between 2 numbers)
-⦁	Zero
+- Split (Between 2 numbers)
+- Zero
 
 ##### 35 to 1
-⦁	StraightUp (Exact number)
+- StraightUp (Exact number)
 
 ## Design and Implementation
 A good place to start with any WebApi is user CRUD. I started with a User entity to scaffold out the layers of a simple monolith architecture, namely - Controllers->Services->EF DbContext->sqliteDb. Furthermore, FluentValidation was implemented on the requests at the beginning of the scope of the ServiceLayer methods.
 Naturally, a Models namespace was added including:
-⦁	Entities - POCO classes that will map via code-first approach through EntityFramework to the sqlite database file. 
-⦁	DTOs - Data Transfer Objects
-⦁	Requests
-⦁	Responses
+- *Entities* - POCO classes that will map via code-first approach through EntityFramework to the sqlite database file. 
+- *DTOs* - Data Transfer Objects
+- *Requests*
+- *Responses*
 
 ### Models
 
@@ -81,7 +81,10 @@ Data transfer objects returned, in the GenericResponse Result property, to the a
 
 #### Database Setup
 Run the following command in your CLI:
+
 	`dotnet tool install --global dotnet-ef`
+	
 This will install the tools to enable you to create and apply migrations. This is needed to set up the database.
 To create a database instance, run the following command in your CLI:
+
 	`dotnet ef database update`
