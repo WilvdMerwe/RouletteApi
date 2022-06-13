@@ -10,6 +10,9 @@
 
 ### Rules
 
+Below rules describes the multiplier that should be applied to the bet amount to calculate the resulting payout of that bet.
+The user can however make a collection of bets before the the spin result establishes the payout.
+
 #### Outside
 ##### 1 to 1
 ⦁	AnyBlack
