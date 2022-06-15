@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteApi", "RouletteApi.csproj", "{A3DC8CBC-3CFD-47AC-BE3F-F542E463D2BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouletteApi", "RouletteApi\RouletteApi.csproj", "{A3DC8CBC-3CFD-47AC-BE3F-F542E463D2BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteApi.Tests", "..\RouletteApi.Tests\RouletteApi.Tests.csproj", "{66D6C86B-CC83-4496-BB6A-E8B88F8CDEB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouletteApi.Tests", "RouletteApi.Tests\RouletteApi.Tests.csproj", "{66D6C86B-CC83-4496-BB6A-E8B88F8CDEB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
