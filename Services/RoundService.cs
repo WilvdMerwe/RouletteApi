@@ -34,7 +34,7 @@ public class RoundService : Service
                 return response;
             }
 
-            round.ResultNumber = Random.Shared.Next(37);
+            round.ResultNumber = 0;//Random.Shared.Next(37);
             round.Status = RoundStatus.Closed;
 
             await _roundRepo.UpdateAsync(round);
@@ -59,6 +59,25 @@ public class RoundService : Service
         catch (Exception ex)
         {
             response.Message = "Could not spin open round";
+            LogException(response.Message, ex);
+        }
+
+        return response;
+    }
+
+    public async Task<Response<Round>> GetOpenRound()
+    {
+        var response = new Response<Round>();
+
+        try
+        {
+            response.Result = await _roundRepo.GetOpenRound();
+
+            response.Success = true;
+        }
+        catch (Exception ex)
+        {
+            response.Message = "Could not get rounds";
             LogException(response.Message, ex);
         }
 

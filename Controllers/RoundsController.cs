@@ -22,6 +22,12 @@ public class RoundsController : ControllerBase
         return await _roundService.SpinOpenRound();
     }
 
+    [HttpGet("open-round")]
+    public async Task<Response<Round>> GetOpenRound()
+    {
+        return await _roundService.GetOpenRound();
+    }
+
     [HttpGet]
     public async Task<Response<IEnumerable<Round>>> Get()
     {
