@@ -34,7 +34,7 @@ public class RoundService : Service
                 return response;
             }
 
-            round.ResultNumber = 0;//Random.Shared.Next(37);
+            round.ResultNumber = Random.Shared.Next(37);
             round.Status = RoundStatus.Closed;
 
             await _roundRepo.UpdateAsync(round);
