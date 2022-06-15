@@ -1,13 +1,13 @@
-﻿namespace RouletteApi.Models;
+﻿namespace RouletteApi.Models.Responses;
 
-public class RouletteResponse
+public class Response
 {
     public bool Success { get; set; }
 
     public string Message { get; set; }
 }
 
-public class RouletteResponse<T>
+public class Response<T>
 {
     public bool Success { get; set; }
 

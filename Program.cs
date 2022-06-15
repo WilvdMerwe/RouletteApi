@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using RouletteApi.Models;
-using RouletteApi.Services.Implementations;
-using RouletteApi.Services.Interfaces;
+using RouletteApi.Repositories;
+using RouletteApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +9,8 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 #region EntityFramework
 
 var connectionString = builder.Configuration.GetConnectionString("RouletteDb");
-builder.Services.AddSqlite<RouletteContext>(connectionString);
-//builder.Services.AddDbContext<RouletteContext>(options => options.UseInMemoryDatabase("items"));
+builder.Services.AddSqlite<RouletteDbContext>(connectionString);
+//builder.Services.AddDbContext<RouletteDbContext>(options => options.UseInMemoryDatabase("RouletteMemoryDb"));
 
 #endregion EntityFramework
 
@@ -21,9 +20,18 @@ builder.Services.AddSwaggerGen();
 
 #region Services
 
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<BetService>();
 
 #endregion Services
+
+#region Repositories
+
+builder.Services.AddScoped<UserRepo>();
+builder.Services.AddScoped<BetRepo>();
+builder.Services.AddScoped<RoundRepo>();
+
+#endregion Repositories
 
 var app = builder.Build();
 

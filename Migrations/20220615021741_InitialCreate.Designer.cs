@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RouletteApi.Repositories;
 
@@ -10,9 +11,10 @@ using RouletteApi.Repositories;
 namespace RouletteApi.Migrations
 {
     [DbContext(typeof(RouletteDbContext))]
-    partial class RouletteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220615021741_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");

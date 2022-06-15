@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using RouletteApi.Models.Requests;
 
-namespace RouletteApi.Validation
+namespace RouletteApi.Validators
 {
     public class UserUpdateValidator : AbstractValidator<UserUpdateRequest>
     {
