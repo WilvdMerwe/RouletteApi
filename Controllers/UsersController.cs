@@ -17,6 +17,12 @@ public class UsersController : ControllerBase
         _userService = userService;
     }
 
+    [HttpPut("{id}/deposit/{amount}")]
+    public async Task<Response<double>> Deposit(int id, double amount)
+    {
+        return await _userService.Deposit(id, amount);
+    }
+
     [HttpGet]
     public async Task<Response<IEnumerable<User>>> Get()
     {
@@ -36,7 +42,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<Response> Create(UserCreateRequest request)
+    public async Task<Response<int>> Create(UserCreateRequest request)
     {
         return await _userService.Create(request);
     }

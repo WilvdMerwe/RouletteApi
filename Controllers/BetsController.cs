@@ -8,17 +8,23 @@ namespace RouletteApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BetController : ControllerBase
+    public class BetsController : ControllerBase
     {
         private readonly BetService _betService;
 
-        public BetController(BetService betService)
+        public BetsController(BetService betService)
         {
             _betService = betService;
         }
 
+        [HttpGet("round/{roundId}")]
+        public async Task<Response<IEnumerable<Bet>>> GetByRoundId(int roundId)
+        {
+            return await _betService.GetByRoundId(roundId);
+        }
+
         [HttpGet("users/{userId}")]
-        public async Task<Response<IEnumerable<Bet>>> GetAllByUserId(int userId)
+        public async Task<Response<IEnumerable<Bet>>> GetByUserId(int userId)
         {
             return await _betService.GetByUserId(userId);
         }

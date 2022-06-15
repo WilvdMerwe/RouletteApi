@@ -1,4 +1,6 @@
-﻿namespace RouletteApi.Models.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace RouletteApi.Models.Entities;
 
 public class User : Entity
 {
@@ -7,5 +9,5 @@ public class User : Entity
     public string Surname { get; set; }
     public double Balance { get; set; }
 
-    public virtual ICollection<UserRound> UserRounds {  get; set; }      
+    [JsonIgnore] public virtual ICollection<UserRound> UserRounds {  get; set; }      
 }

@@ -1,4 +1,5 @@
 ﻿using RouletteApi.Enums;
+using System.Text.Json.Serialization;
 
 namespace RouletteApi.Models.Entities;
 
@@ -8,5 +9,5 @@ public class Round : Entity
     public double MinimumBet { get; set; }
     public int ResultNumber { get; set; } = -1;
 
-    public virtual ICollection<UserRound> UserRounds { get; set; }
+    [JsonIgnore] public virtual ICollection<UserRound> UserRounds { get; set; }
 }

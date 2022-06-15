@@ -13,11 +13,6 @@ namespace RouletteApi.Repositories
             DbContext = rouletteDbContext;
         }
 
-        public async Task SaveChangesAsync()
-        {
-            await DbContext.SaveChangesAsync();
-        }
-
         public async Task<int> CreateAsync(T entity)
         {
             await DbContext.Set<T>().AddAsync(entity);

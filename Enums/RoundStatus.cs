@@ -4,5 +4,5 @@ public enum RoundStatus
 {
     Open,
     Closed,
-    Complete
+    Completed
 }

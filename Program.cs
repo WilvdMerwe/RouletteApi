@@ -22,6 +22,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<BetService>();
+builder.Services.AddScoped<RoundService>();
 
 #endregion Services
 

@@ -16,7 +16,8 @@ public class RouletteDbContext : DbContext
     {
         modelBuilder.Entity<UserRound>()
             .HasMany(e => e.Bets)
-            .WithOne(e => e.UserRound);
+            .WithOne(e => e.UserRound)
+            .HasForeignKey(e => e.UserRoundId);
 
         modelBuilder.Entity<UserRound>()
             .HasOne(e => e.User)

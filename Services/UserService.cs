@@ -18,9 +18,39 @@ public class UserService : Service
         _userRepo = userRepo;
     }
 
-    public async Task<Response> Create(UserCreateRequest request)
+    public async Task<Response<double>> Deposit(int userId, double amount)
     {
-        var response = new Response();
+        var response = new Response<double>();
+
+        try
+        {
+            if (amount < 0)
+            {
+                response.Message = "Amount should be more than 0";
+                return response;
+            }
+
+            var user = await _userRepo.GetAsync(userId);
+            user.Balance += amount;
+
+            await _userRepo.UpdateAsync(user);
+
+            response.Result = user.Balance;
+
+            response.Success = true;
+        }
+        catch (Exception ex)
+        {
+            response.Message = "Could not deposit";
+            LogException(response.Message, ex);
+        }
+
+        return response;
+    }
+
+    public async Task<Response<int>> Create(UserCreateRequest request)
+    {
+        var response = new Response<int>();
 
         try
         {
@@ -40,7 +70,7 @@ public class UserService : Service
                 Surname = request.Surname
             };
 
-            await _userRepo.CreateAsync(user);
+            response.Result = await _userRepo.CreateAsync(user);
 
             response.Success = true;
         }
