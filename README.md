@@ -52,7 +52,7 @@ The user can however make a collection of bets before the the spin result establ
 - StraightUp (Exact number)
 
 ## Design and Implementation
-A good place to start with any WebApi is user CRUD. I started with a User entity to scaffold out the layers of a simple monolith architecture, namely - Controllers->Services->EF DbContext->sqliteDb. Furthermore, FluentValidation was implemented on the requests at the beginning of the scope of the ServiceLayer methods.
+A good place to start with any WebApi is user CRUD. I started with a User entity to scaffold out the layers of a simple monolith architecture, namely - **Controllers->Services->Repositories->EF DbContext->sqliteDb**. Furthermore, FluentValidation was implemented on the requests at the beginning of the scope of the ServiceLayer methods.
 Naturally, a Models namespace was added including:
 - *Entities* - POCO classes that will map via code-first approach through EntityFramework to the sqlite database file. 
 - *DTOs* - Data Transfer Objects
