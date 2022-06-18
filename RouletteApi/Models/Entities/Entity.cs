@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RouletteApi.Models;
+namespace RouletteApi.Models.Entities;
 
 public class Entity
 {

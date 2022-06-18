@@ -30,7 +30,15 @@ public class UserService : Service
                 return response;
             }
 
-            var user = await _userRepo.GetAsync(userId);
+            var userResponse = await GetById(userId);
+            if (!userResponse.Success)
+            {
+                response.Message = userResponse.Message;
+                return response;
+            }
+
+            var user = userResponse.Result;
+
             user.Balance += amount;
 
             await _userRepo.UpdateAsync(user);
@@ -63,6 +71,13 @@ public class UserService : Service
                 return response;
             }
 
+            var doesEmailExist = await _userRepo.DoesEmailExist(request.Email);
+            if (doesEmailExist)
+            {
+                response.Message = "A user with provided email already exists";
+                return response;
+            }
+
             var user = new User
             {
                 Email = request.Email,
@@ -89,12 +104,14 @@ public class UserService : Service
 
         try
         {
-            var user = await _userRepo.GetAsync(id);
-            if (user is null)
+            var userResponse = await GetById(id);
+            if (!userResponse.Success)
             {
-                response.Message = "User not found";
+                response.Message = userResponse.Message;
                 return response;
             }
+
+            var user = userResponse.Result;
 
             await _userRepo.DeleteAsync(user);
 
@@ -135,6 +152,11 @@ public class UserService : Service
         try
         {
             var user = await _userRepo.GetAsync(id);
+            if (user is null)
+            {
+                response.Message = "User does not exist";
+                return response;
+            }
 
             response.Result = user;
 

@@ -17,7 +17,7 @@ public class RoundsController : ControllerBase
     }
 
     [HttpPost("spin-open-round")]
-    public async Task<Response> SpinOpenRound()
+    public async Task<Response<int>> SpinOpenRound()
     {
         return await _roundService.SpinOpenRound();
     }

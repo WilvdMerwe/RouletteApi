@@ -21,18 +21,20 @@ public class RoundService : Service
         _userRepo = userRepo;
     }
 
-    public async Task<Response> SpinOpenRound()
+    public async Task<Response<int>> SpinOpenRound()
     {
-        var response = new Response();
+        var response = new Response<int>();
 
         try
         {
-            var round = await _roundRepo.GetOpenRound();
-            if (round is null)
+            var roundResponse = await GetOpenRound();
+            if (!roundResponse.Success)
             {
-                response.Message = "No open round found";
+                response.Message = roundResponse.Message;
                 return response;
             }
+
+            var round = roundResponse.Result;
 
             round.ResultNumber = Random.Shared.Next(37);
             round.Status = RoundStatus.Closed;
@@ -41,7 +43,6 @@ public class RoundService : Service
 
             foreach (var userRound in round.UserRounds)
             {
-                double userPayout = 0;
                 var user = await _userRepo.GetAsync(userRound.UserId);
 
                 foreach (var bet in userRound.Bets)
@@ -53,6 +54,8 @@ public class RoundService : Service
             round.Status = RoundStatus.Completed;
 
             await _roundRepo.UpdateAsync(round);
+
+            response.Result = round.ResultNumber;
 
             response.Success = true;
         }
@@ -71,7 +74,14 @@ public class RoundService : Service
 
         try
         {
-            response.Result = await _roundRepo.GetOpenRound();
+            var openRound = await _roundRepo.GetOpenRound();
+            if (openRound is null)
+            {
+                response.Message = "No open round found";
+                return response;
+            }
+
+            response.Result = openRound;
 
             response.Success = true;
         }

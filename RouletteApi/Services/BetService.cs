@@ -73,7 +73,23 @@ public class BetService : Service
             var round = await _roundRepo
                 .FindBy(r => r.Status == RoundStatus.Open)
                 .Include(r => r.UserRounds.Where(ur => ur.UserId == request.UserId))
+                .ThenInclude(ur => ur.Bets)
                 .FirstOrDefaultAsync();
+
+            var isAnyUserRounds = round.UserRounds.Any(ur => ur.UserId == request.UserId);
+            if (!isAnyUserRounds)
+            {
+                var newUserRound = new UserRound
+                {
+                    RoundId = round.Id,
+                    UserId = request.UserId,
+                    Bets = new List<Bet>()
+                };
+
+                round.UserRounds.Add(newUserRound);
+            }
+            
+            var userRound = round.UserRounds.FirstOrDefault(ur => ur.UserId == request.UserId);
 
             var bet = new Bet
             {
@@ -82,12 +98,7 @@ public class BetService : Service
                 Amount = request.Amount
             };
 
-            round.UserRounds.Add(new UserRound
-            {
-                RoundId = round.Id,
-                UserId = request.UserId,
-                Bets = new List<Bet> { bet }
-            });
+            userRound.Bets.Add(bet);
 
             await _roundRepo.UpdateAsync(round);
 

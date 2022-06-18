@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RouletteApi.Models;
+using RouletteApi.Models.Entities;
 using System.Linq.Expressions;
 
 namespace RouletteApi.Repositories
