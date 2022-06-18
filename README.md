@@ -62,6 +62,10 @@ Naturally, a Models namespace was added including:
 ### Models
 
 #### Entities
+- User
+- Round
+- Bet
+- UserRound
 
 #### DTOs
 
